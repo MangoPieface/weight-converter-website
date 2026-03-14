@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Weight Converter">
+  <main class="card">
+    <h1>Weight Converter</h1>
+
+    <div class="field">
+      <label for="kg">Kilograms</label>
+      <input type="text" id="kg" inputmode="decimal" placeholder="0" autocomplete="off" />
+    </div>
+
+    <div class="swap-indicator" aria-hidden="true">⇅</div>
+
+    <div class="imperial-row">
+      <div class="field">
+        <label for="st">Stone</label>
+        <input type="text" id="st" inputmode="decimal" placeholder="0" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="lbs">Pounds</label>
+        <input type="text" id="lbs" inputmode="decimal" placeholder="0.0" autocomplete="off" />
+      </div>
+    </div>
+  </main>
+
+  <script src="../scripts/converter.ts"></script>
+</Layout>
