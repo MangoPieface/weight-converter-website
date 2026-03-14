@@ -1,9 +1,12 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Free online weight converter. Instantly convert between kilograms (kg) and stones & pounds (st lb). Fast, accurate, and easy to use." } = Astro.props;
+const siteTitle = `${title} - Kg to Stone & Pounds | Free Online Tool`;
+const siteUrl = "https://kgtostone.uk";
 ---
 
 <!doctype html>
@@ -12,8 +15,50 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Convert between kilograms and stones/pounds instantly" />
-    <title>{title}</title>
+
+    <!-- Primary SEO -->
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="weight converter, kg to stone, kg to pounds, kilograms to stones, kilograms to pounds, stone to kg, pounds to kg, weight conversion calculator, metric to imperial weight" />
+    <link rel="canonical" href={siteUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Weight Converter" />
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Weight Converter" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Weight Converter",
+      "description": description,
+      "url": siteUrl,
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "featureList": [
+        "Convert kilograms to stones and pounds",
+        "Convert stones and pounds to kilograms",
+        "Real-time conversion",
+        "Works offline"
+      ]
+    })} />
   </head>
   <body>
     <slot />
